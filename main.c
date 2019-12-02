@@ -8,8 +8,8 @@ int main()
     float* ptr; 
     int n=100,i;
   
-   // Dynamically allocate memory using malloc() 
-    ptr = (float*)malloc(n * sizeof(float)); 
+   // Dynamically allocate memory using calloc() 
+    ptr = (float*)calloc(n , sizeof(float)); 
   for (i = 0; i < n; i += 1)
   {
     printf("Element %d of array before assignment is %f\n",i,ptr[i]);
@@ -17,7 +17,38 @@ int main()
   }
   float res[2];
   mean_and_variance(ptr,res,n);
-  printf("Mean is %f  and Variance is %f\n",res[0],res[1]);
+  
+   FILE *filePointer ; 
+      
+   
+    // Open the output.txt using fopen() 
+    // in write mode using "w" attribute 
+    filePointer = fopen("output.txt", "w") ; 
+      
+    // Check if this filePointer is null 
+    // which maybe if the file does not exist 
+    if ( filePointer == NULL ) 
+    { 
+        printf( "output.bin file failed to open." ) ; 
+    } 
+    else
+    { 
+          
+        printf("The file is now opened.\n") ; 
+          
+        
+       // writing in the file using fprintf() 
+       fprintf(filePointer, "%f \n %f\n", res[0],res[1]);
+            
+       // Closing the file using fclose() 
+       fclose(filePointer) ; 
+          
+        printf("Data successfully written in output.txt\n"); 
+        printf("The file is now closed.") ; 
+    } 
+  
+  
+  
   free(ptr);
   return 0;
   
