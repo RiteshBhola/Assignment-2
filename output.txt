@@ -1,0 +1,1 @@
+Mean is 3383.500000 and variance is 9055258.000000 
